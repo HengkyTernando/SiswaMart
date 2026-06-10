@@ -25,7 +25,8 @@
             <div class="lg:col-span-3">
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5"
                      style="background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.3);color:#a78bfa">
-                    🎓 Marketplace #1 untuk Pelajar Indonesia
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block" width="13" height="13" style="vertical-align:-1px"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    Marketplace #1 untuk Pelajar Indonesia
                 </div>
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">
                     Semua Kebutuhan<br><span class="grad-text">Sekolah</span> Ada di Sini!
@@ -35,14 +36,16 @@
                 </p>
                 <div class="flex flex-wrap gap-3">
                     <a href="#produk" class="btn-primary px-6 py-2.5 rounded-xl flex items-center gap-2 glow">
-                        🛒 Mulai Belanja
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" style="vertical-align:-2px"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        Mulai Belanja
                     </a>
                     <a href="{{ route('register') }}"
                        class="px-6 py-2.5 rounded-xl font-semibold flex items-center gap-2 transition text-sm"
                        style="background:rgba(255,255,255,.06);border:1px solid rgba(139,92,246,.3);color:#c4b5fd"
                        onmouseover="this.style.background='rgba(139,92,246,.15)'"
                        onmouseout="this.style.background='rgba(255,255,255,.06)'">
-                        🏪 Buka Toko
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" style="vertical-align:-2px"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        Buka Toko
                     </a>
                 </div>
 
@@ -132,7 +135,10 @@
 @if(!request('search') && !request('category') && $featured->count())
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
     <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-black text-white">🔥 Produk Terbaru</h2>
+        <h2 class="text-lg font-black text-white flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="color:#a78bfa"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Produk Terbaru
+        </h2>
         <a href="#produk" class="text-xs font-semibold" style="color:var(--clr-purple-l)">Lihat Semua →</a>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -148,9 +154,13 @@
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
         <div>
             <h2 class="text-lg font-black text-white">
-                @if(request('search')) 🔍 "{{ request('search') }}"
+                @if(request('search'))
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="color:#a78bfa;vertical-align:-3px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    "{{ request('search') }}"
                 @elseif(request('category')) {{ $categories->firstWhere('slug', request('category'))?->name ?? 'Kategori' }}
-                @else 🛍️ Semua Produk
+                @else
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="color:#a78bfa;vertical-align:-3px"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    Semua Produk
                 @endif
             </h2>
             <p class="text-xs mt-0.5" style="color:var(--clr-muted)">{{ $products->total() }} produk ditemukan</p>
@@ -170,7 +180,9 @@
 
     @if($products->isEmpty())
         <div class="text-center py-20 rounded-3xl" style="background:var(--clr-card);border:1px solid var(--clr-border)">
-            <div class="text-6xl mb-3">🔍</div>
+            <div style="display:flex;justify-content:center;margin-bottom:12px">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="56" height="56" style="color:#4c4878"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
             <p class="font-bold text-white mb-1">Produk tidak ditemukan</p>
             <p class="text-sm mb-4" style="color:var(--clr-muted)">Coba kata kunci lain</p>
             <a href="{{ route('home') }}" class="btn-primary px-5 py-2 rounded-xl inline-block text-sm">Lihat Semua</a>

@@ -22,7 +22,9 @@
     @if(empty($cart))
         {{-- Empty state --}}
         <div class="text-center py-24 rounded-3xl" style="background:var(--clr-card);border:1px solid var(--clr-border)">
-            <div class="text-6xl mb-4">🛒</div>
+            <div style="display:flex;justify-content:center;margin-bottom:16px">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="64" height="64" style="color:#4c4878"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            </div>
             <h3 class="text-xl font-black text-white mb-2">Keranjang Kosong</h3>
             <p class="text-sm mb-6" style="color:var(--clr-muted)">Belum ada produk di keranjang kamu</p>
             <a href="{{ route('home') }}" class="btn-primary px-6 py-2.5 rounded-xl inline-block font-semibold">
@@ -44,7 +46,8 @@
                                 style="color:#f87171;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2)"
                                 onmouseover="this.style.background='rgba(248,113,113,.15)'"
                                 onmouseout="this.style.background='rgba(248,113,113,.08)'">
-                            🗑 Kosongkan Keranjang
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" style="vertical-align:-1px"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+                            Kosongkan Keranjang
                         </button>
                     </form>
                 </div>

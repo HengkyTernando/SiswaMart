@@ -38,18 +38,20 @@
 
     @php
         $statusConfig = [
-            'pending'    => ['label'=>'Pending',    'bg'=>'rgba(251,191,36,.12)',  'color'=>'#fbbf24', 'border'=>'rgba(251,191,36,.25)',  'icon'=>'⏳'],
-            'processing' => ['label'=>'Diproses',   'bg'=>'rgba(59,130,246,.12)', 'color'=>'#60a5fa', 'border'=>'rgba(59,130,246,.25)', 'icon'=>'⚙️'],
-            'shipped'    => ['label'=>'Dikirim',    'bg'=>'rgba(139,92,246,.12)', 'color'=>'#a78bfa', 'border'=>'rgba(139,92,246,.25)', 'icon'=>'🚚'],
-            'delivered'  => ['label'=>'Selesai',    'bg'=>'rgba(52,211,153,.12)', 'color'=>'#34d399', 'border'=>'rgba(52,211,153,.25)', 'icon'=>'✅'],
-            'cancelled'  => ['label'=>'Dibatalkan', 'bg'=>'rgba(248,113,113,.08)','color'=>'#f87171', 'border'=>'rgba(248,113,113,.2)', 'icon'=>'❌'],
+            'pending'    => ['label'=>'Pending',    'bg'=>'rgba(251,191,36,.12)',  'color'=>'#fbbf24', 'border'=>'rgba(251,191,36,.25)',  'icon'=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'],
+            'processing' => ['label'=>'Diproses',   'bg'=>'rgba(59,130,246,.12)', 'color'=>'#60a5fa', 'border'=>'rgba(59,130,246,.25)', 'icon'=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'],
+            'shipped'    => ['label'=>'Dikirim',    'bg'=>'rgba(139,92,246,.12)', 'color'=>'#a78bfa', 'border'=>'rgba(139,92,246,.25)', 'icon'=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>'],
+            'delivered'  => ['label'=>'Selesai',    'bg'=>'rgba(52,211,153,.12)', 'color'=>'#34d399', 'border'=>'rgba(52,211,153,.25)', 'icon'=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'],
+            'cancelled'  => ['label'=>'Dibatalkan', 'bg'=>'rgba(248,113,113,.08)','color'=>'#f87171', 'border'=>'rgba(248,113,113,.2)', 'icon'=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>'],
         ];
     @endphp
 
     @if($orders->isEmpty())
         {{-- Empty state --}}
         <div class="text-center py-24 rounded-3xl" style="background:var(--clr-card);border:1px solid var(--clr-border)">
-            <div class="text-6xl mb-4">📋</div>
+            <div style="display:flex;justify-content:center;margin-bottom:16px">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="64" height="64" style="color:#4c4878"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
             <h3 class="text-xl font-black text-white mb-2">Belum Ada Pesanan</h3>
             <p class="text-sm mb-6" style="color:var(--clr-muted)">Yuk mulai belanja perlengkapan sekolah!</p>
             <a href="{{ route('home') }}" class="btn-primary px-6 py-2.5 rounded-xl inline-block font-semibold">
@@ -73,7 +75,7 @@
                 <div class="flex items-center justify-between px-5 py-4"
                      style="border-bottom:1px solid var(--clr-border)">
                     <div class="flex items-center gap-3">
-                        <div class="text-xl">{{ $cfg['icon'] }}</div>
+                        <div class="text-xl" style="color:{{ $cfg['color'] }}">{!! $cfg['icon'] !!}</div>
                         <div>
                             <div class="flex items-center gap-2">
                                 <p class="font-black grad-text text-sm">{{ $order->order_code }}</p>

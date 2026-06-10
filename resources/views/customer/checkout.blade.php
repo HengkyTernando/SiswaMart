@@ -140,9 +140,9 @@
                     <div class="space-y-3">
                         @php
                             $methods = [
-                                ['id'=>'cod',      'icon'=>'💵', 'label'=>'Bayar di Tempat (COD)',     'desc'=>'Bayar saat paket tiba'],
-                                ['id'=>'transfer',  'icon'=>'🏦', 'label'=>'Transfer Bank',              'desc'=>'BCA · BNI · Mandiri · BRI'],
-                                ['id'=>'ewallet',   'icon'=>'📱', 'label'=>'E-Wallet',                   'desc'=>'GoPay · OVO · DANA · ShopeePay'],
+                                ['id'=>'cod',      'icon'=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>', 'label'=>'Bayar di Tempat (COD)',     'desc'=>'Bayar saat paket tiba'],
+                                ['id'=>'transfer', 'icon'=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>', 'label'=>'Transfer Bank',              'desc'=>'BCA · BNI · Mandiri · BRI'],
+                                ['id'=>'ewallet',  'icon'=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>', 'label'=>'E-Wallet',                   'desc'=>'GoPay · OVO · DANA · ShopeePay'],
                             ];
                         @endphp
                         @foreach($methods as $m)
@@ -152,7 +152,7 @@
                                data-value="{{ $m['id'] }}">
                             <input type="radio" name="payment_method" id="pay_{{ $m['id'] }}" value="{{ $m['id'] }}"
                                    class="hidden" {{ $loop->first ? 'checked' : '' }}>
-                            <span class="text-2xl">{{ $m['icon'] }}</span>
+                            <div class="flex items-center justify-center w-8 h-8 rounded-lg" style="background:var(--clr-surface);color:var(--clr-text)">{!! $m['icon'] !!}</div>
                             <div class="flex-1">
                                 <div class="text-sm font-semibold text-white">{{ $m['label'] }}</div>
                                 <div class="text-xs" style="color:var(--clr-muted)">{{ $m['desc'] }}</div>
@@ -260,9 +260,13 @@
 
                     {{-- Trust badges --}}
                     <div class="pt-2 grid grid-cols-3 gap-2 text-center">
-                        @foreach([['🔒','Transaksi Aman'],['📦','Pengiriman Cepat'],['↩️','Garansi Kembali']] as [$icon,$label])
+                        @foreach([
+                            ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" style="margin:0 auto"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>', 'Transaksi Aman'],
+                            ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" style="margin:0 auto"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>', 'Pengiriman Cepat'],
+                            ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" style="margin:0 auto"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>', 'Garansi Kembali']
+                        ] as [$icon,$label])
                         <div class="p-2 rounded-xl" style="background:var(--clr-surface);border:1px solid var(--clr-border)">
-                            <div class="text-lg">{{ $icon }}</div>
+                            <div class="mb-1 text-white">{!! $icon !!}</div>
                             <div class="text-xs leading-tight mt-1" style="color:var(--clr-muted)">{{ $label }}</div>
                         </div>
                         @endforeach

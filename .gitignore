@@ -17,3 +17,11 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Presentation and scratch files
+SiswaMart_Business_Presentation.pptx
+generate_pptx.py
+db_connect.php
+login.php
+register.php
+public/siswamart_presentation.html

@@ -19,7 +19,9 @@
             </div>
         </div>
 
-        <h1 class="text-3xl font-black text-white mb-2">Pesanan Berhasil! 🎉</h1>
+        <h1 class="text-3xl font-black text-white mb-2">Pesanan Berhasil!
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" style="display:inline-block;vertical-align:-4px;color:#a78bfa"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </h1>
         <p style="color:var(--clr-muted)" class="text-sm">
             Terima kasih, <span class="font-semibold text-white">{{ auth()->user()->name }}</span>!<br>
             Pesananmu sedang kami proses.
@@ -35,9 +37,10 @@
                 <p class="text-xs font-semibold mb-0.5" style="color:var(--clr-muted)">Kode Pesanan</p>
                 <p class="text-lg font-black grad-text">{{ $order->order_code }}</p>
             </div>
-            <span class="px-3 py-1.5 rounded-full text-xs font-bold"
+            <span class="px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1"
                   style="background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.2)">
-                ⏳ Pending
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Pending
             </span>
         </div>
 
@@ -132,7 +135,8 @@
            style="border:1px solid var(--clr-border);color:var(--clr-muted)"
            onmouseover="this.style.borderColor='var(--clr-purple)';this.style.color='var(--clr-purple-l)'"
            onmouseout="this.style.borderColor='var(--clr-border)';this.style.color='var(--clr-muted)'">
-            🛍 Lanjut Belanja
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Lanjut Belanja
         </a>
     </div>
 </div>

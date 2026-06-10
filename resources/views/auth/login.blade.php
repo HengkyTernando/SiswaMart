@@ -80,26 +80,12 @@
         .logo-bar {
             display: flex;
             align-items: center;
-            gap: .75rem;
+            gap: .6rem;
             margin-bottom: 2rem;
             text-decoration: none;
         }
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--purple-500), #4f46e5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: .9rem;
-            color: #fff;
-            box-shadow: 0 0 20px rgba(139,92,246,.5);
-            flex-shrink: 0;
-        }
         .logo-text {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 800;
             background: linear-gradient(90deg, #c4b5fd, #818cf8);
             -webkit-background-clip: text;
@@ -315,24 +301,7 @@
         }
         .back-home:hover { color: var(--purple-400); }
 
-        /* ── Demo badge ── */
-        .demo-badge {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(139,92,246,.07);
-            border: 1px solid rgba(139,92,246,.18);
-            border-radius: 12px;
-            font-size: .75rem;
-            color: var(--text-secondary);
-        }
-        .demo-badge strong { color: var(--purple-400); display: block; margin-bottom: .4rem; }
-        .demo-badge code {
-            background: rgba(255,255,255,.07);
-            padding: .1rem .35rem;
-            border-radius: 4px;
-            font-size: .7rem;
-        }
-        .demo-badge div + div { margin-top: .25rem; }
+
     </style>
 </head>
 <body>
@@ -343,7 +312,7 @@
 
     <!-- Logo -->
     <a href="{{ route('home') }}" class="logo-bar">
-        <div class="logo-icon">SM</div>
+        <img src="{{ asset('images/logo-icon.png') }}" alt="" style="height:44px;width:auto">
         <span class="logo-text">SiswaMart</span>
     </a>
 
@@ -398,14 +367,7 @@
             Don't have an account? <a href="{{ route('register') }}">Register</a>
         </p>
 
-        <!-- Demo credentials -->
-        <div class="demo-badge">
-            <strong>🧪 Demo Akun</strong>
-            <div>👑 Admin: <code>admin@siswamart.com</code></div>
-            <div>🏪 Seller: <code>seller@siswamart.com</code></div>
-            <div>🛒 Customer: <code>customer@siswamart.com</code></div>
-            <div style="margin-top:.4rem; color:#6b7280">Password: <code>password</code></div>
-        </div>
+
     </div>
 
     <a href="{{ route('home') }}" class="back-home">← Kembali ke Beranda</a>

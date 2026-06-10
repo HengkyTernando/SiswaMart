@@ -75,26 +75,12 @@
         .logo-bar {
             display: flex;
             align-items: center;
-            gap: .75rem;
+            gap: .6rem;
             margin-bottom: 2rem;
             text-decoration: none;
         }
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--purple-500), #4f46e5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: .9rem;
-            color: #fff;
-            box-shadow: 0 0 20px rgba(139,92,246,.5);
-            flex-shrink: 0;
-        }
         .logo-text {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 800;
             background: linear-gradient(90deg, #c4b5fd, #818cf8);
             -webkit-background-clip: text;
@@ -165,7 +151,7 @@
             background: rgba(139,92,246,.12);
             box-shadow: 0 0 0 3px rgba(139,92,246,.15);
         }
-        .role-emoji { font-size: 1.4rem; display: block; margin-bottom: .3rem; }
+        .role-emoji { display: flex; justify-content: center; align-items: center; margin-bottom: .3rem; color: var(--purple-400); }
         .role-name  { font-size: .8125rem; font-weight: 700; color: var(--text-primary); }
         .role-desc  { font-size: .7rem; color: var(--text-muted); margin-top: .15rem; }
 
@@ -351,7 +337,7 @@
 
     <!-- Logo -->
     <a href="{{ route('home') }}" class="logo-bar">
-        <div class="logo-icon">SM</div>
+        <img src="{{ asset('images/logo-icon.png') }}" alt="" style="height:44px;width:auto">
         <span class="logo-text">SiswaMart</span>
     </a>
 
@@ -375,7 +361,9 @@
                 <label class="role-option">
                     <input type="radio" name="role" value="customer" {{ old('role','customer') === 'customer' ? 'checked' : '' }}>
                     <div class="role-box">
-                        <span class="role-emoji">🛒</span>
+                        <span class="role-emoji">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        </span>
                         <div class="role-name">Customer</div>
                         <div class="role-desc">Belanja produk</div>
                     </div>
@@ -383,7 +371,9 @@
                 <label class="role-option">
                     <input type="radio" name="role" value="seller" {{ old('role') === 'seller' ? 'checked' : '' }}>
                     <div class="role-box">
-                        <span class="role-emoji">🏪</span>
+                        <span class="role-emoji">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </span>
                         <div class="role-name">Seller</div>
                         <div class="role-desc">Jual produk</div>
                     </div>

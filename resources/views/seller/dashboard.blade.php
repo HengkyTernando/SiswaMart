@@ -7,7 +7,7 @@
     <div class="flex items-center gap-3 mb-8">
         <div class="w-10 h-10 rounded-xl flex items-center justify-center"
              style="background:linear-gradient(135deg,#7c3aed,#9333ea)">
-            <span class="text-white text-lg">🏪</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <div>
             <h1 class="text-2xl font-black text-white">Dashboard Seller</h1>
@@ -26,14 +26,17 @@
 
     {{-- Stats --}}
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-        @foreach([
-            ['icon'=>'📦','value'=>$productCount,'label'=>'Produk','color'=>'#a78bfa'],
-            ['icon'=>'🛒','value'=>$orderCount,'label'=>'Total Pesanan','color'=>'#60a5fa'],
-            ['icon'=>'⏳','value'=>$pendingCount,'label'=>'Pesanan Baru','color'=>'#fbbf24'],
-            ['icon'=>'💬','value'=>$unreadCount,'label'=>'Pesan Baru','color'=>'#34d399'],
-        ] as $stat)
+        @php
+        $stats = [
+            ['svg' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>', 'value'=>$productCount, 'label'=>'Produk', 'color'=>'#a78bfa'],
+            ['svg' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>', 'value'=>$orderCount, 'label'=>'Total Pesanan', 'color'=>'#60a5fa'],
+            ['svg' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>', 'value'=>$pendingCount, 'label'=>'Pesanan Baru', 'color'=>'#fbbf24'],
+            ['svg' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>', 'value'=>$unreadCount, 'label'=>'Pesan Baru', 'color'=>'#34d399'],
+        ];
+        @endphp
+        @foreach($stats as $stat)
         <div class="rounded-2xl p-4" style="background:var(--clr-card);border:1px solid var(--clr-border)">
-            <div class="text-2xl mb-2">{{ $stat['icon'] }}</div>
+            <div class="mb-2" style="color:{{ $stat['color'] }}">{!! $stat['svg'] !!}</div>
             <div class="text-2xl font-black" style="color:{{ $stat['color'] }}">{{ $stat['value'] }}</div>
             <div class="text-xs mt-0.5" style="color:var(--clr-muted)">{{ $stat['label'] }}</div>
         </div>
@@ -43,7 +46,9 @@
     {{-- Quick actions --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="rounded-2xl p-5" style="background:var(--clr-card);border:1px solid var(--clr-border)">
-            <div class="text-3xl mb-3">📦</div>
+            <div class="mb-3" style="color:var(--clr-purple-l)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
             <h3 class="font-bold text-white mb-1">Produk Saya</h3>
             <p class="text-sm mb-4" style="color:var(--clr-muted)">Tambah, edit, dan kelola produk kamu</p>
             <div class="flex gap-2">
@@ -68,7 +73,9 @@
                 {{ $pendingCount + $unreadCount }}
             </div>
             @endif
-            <div class="text-3xl mb-3">🛒</div>
+            <div class="mb-3" style="color:var(--clr-purple-l)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            </div>
             <h3 class="font-bold text-white mb-1">Pesanan Masuk</h3>
             <p class="text-sm mb-4" style="color:var(--clr-muted)">
                 @if($pendingCount > 0)

@@ -118,7 +118,9 @@
         {{-- Empty state --}}
         @if($order->messages->isEmpty())
         <div id="empty-chat" class="flex flex-col items-center justify-center h-full py-16 text-center">
-            <div class="text-5xl mb-3">💬</div>
+            <div style="display:flex;justify-content:center;margin-bottom:12px">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="52" height="52" style="color:#4c4878"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
             <p class="text-sm font-semibold text-white mb-1">Belum ada pesan</p>
             <p class="text-xs" style="color:var(--clr-muted)">Mulai percakapan tentang pesanan ini</p>
         </div>

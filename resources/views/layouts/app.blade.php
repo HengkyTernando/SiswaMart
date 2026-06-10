@@ -80,11 +80,8 @@
         <div class="flex items-center justify-between h-16">
 
             {{-- Logo --}}
-            <a href="{{ route('home') }}" class="flex items-center gap-2 flex-shrink-0">
-                <div class="w-8 h-8 rounded-lg flex items-center justify-center glow-sm"
-                     style="background:linear-gradient(135deg,#7c3aed,#9333ea)">
-                    <span class="text-white font-black text-xs">SM</span>
-                </div>
+            <a href="{{ route('home') }}" class="flex items-center gap-2 flex-shrink-0" style="text-decoration:none">
+                <img src="{{ asset('images/logo-icon.png') }}" alt="" class="h-9 w-auto">
                 <span class="text-lg font-black grad-text">SiswaMart</span>
             </a>
 
@@ -242,10 +239,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="col-span-1 md:col-span-2">
                 <div class="flex items-center gap-2 mb-3">
-                    <div class="w-8 h-8 rounded-lg flex items-center justify-center"
-                         style="background:linear-gradient(135deg,#7c3aed,#9333ea)">
-                        <span class="text-white font-black text-xs">SM</span>
-                    </div>
+                    <img src="{{ asset('images/logo-icon.png') }}" alt="" class="h-9 w-auto">
                     <span class="text-lg font-black grad-text">SiswaMart</span>
                 </div>
                 <p class="text-sm leading-relaxed max-w-xs" style="color:var(--clr-muted)">
@@ -262,13 +256,19 @@
             <div>
                 <h4 class="font-bold text-white text-sm mb-3">Kontak</h4>
                 <ul class="space-y-2 text-sm" style="color:var(--clr-muted)">
-                    <li>📧 info@siswamart.com</li>
-                    <li>📞 0800-1-SISWA</li>
+                    <li class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        info@siswamart.com
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.6 4.38 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.4a16 16 0 0 0 6.29 6.29l1.36-1.36a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        0800-1-SISWA
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="mt-8 pt-6 text-center text-xs" style="border-top:1px solid var(--clr-border);color:var(--clr-muted)">
-            © {{ date('Y') }} SiswaMart. Dibuat dengan ❤️ untuk pelajar Indonesia.
+            © {{ date('Y') }} SiswaMart.
         </div>
     </div>
 </footer>
