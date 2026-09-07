@@ -30,9 +30,6 @@
         <div class="w-full md:w-2/5 relative z-10 hidden md:block">
             <div class="relative w-full aspect-square bg-[var(--color-warning)] rounded-full border-4 border-[var(--color-border)] shadow-solid-lg overflow-hidden transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 <img src="{{ asset('images/hero-bg.png') }}" alt="Makanan Enak" class="w-full h-full object-cover mix-blend-multiply opacity-90 p-4">
-                <div class="absolute inset-0 flex items-center justify-center text-[100px] drop-shadow-md">
-                    🍔
-                </div>
             </div>
         </div>
     </div>

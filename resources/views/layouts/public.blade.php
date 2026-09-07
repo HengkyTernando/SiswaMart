@@ -193,9 +193,6 @@
                 <a href="{{ route('public.cara_pemesanan') }}" class="hover:text-[var(--color-primary-border)] transition-colors">CARA MEMESAN</a>
             </div>
         </div>
-        <div class="border-t border-white/20 mt-12 pt-8 text-center text-sm font-medium opacity-60">
-            &copy; {{ date('Y') }} SiswaMart. Dibuat dengan 💛 oleh siswa.
-        </div>
     </div>
 </footer>
 
