@@ -6,39 +6,48 @@
 @section('content')
 
 {{-- Filter + breadcrumb header --}}
-<div class="bg-white border-b border-[#E2E8F0] shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-[var(--color-bg)] border-b-4 border-[var(--color-border)] shadow-solid-sm pt-8 pb-4">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-[60px]">
 
         {{-- Search row --}}
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 py-4">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
             <div class="flex-1 min-w-0">
-                <h1 class="text-base sm:text-lg font-bold text-[#172033] truncate">
+                <h1 class="text-3xl sm:text-4xl font-black text-[var(--color-text)] truncate uppercase tracking-tighter">
                     @if($search && $selectedKategori)
-                        "<span class="text-[#2563EB]">{{ $search }}</span>"
-                        di <span class="text-[#2563EB]">{{ $kategoriList->firstWhere('slug', $selectedKategori)?->nama ?? $selectedKategori }}</span>
+                        "<span class="text-[var(--color-primary)]">{{ $search }}</span>"
+                        di <span class="text-[var(--color-primary)]">{{ $kategoriList->firstWhere('slug', $selectedKategori)?->nama ?? $selectedKategori }}</span>
                     @elseif($search)
-                        Hasil Pencarian: "<span class="text-[#2563EB]">{{ $search }}</span>"
+                        Hasil Pencarian: "<span class="text-[var(--color-primary)]">{{ $search }}</span>"
                     @elseif($selectedKategori)
-                        Kategori: <span class="text-[#2563EB]">{{ $kategoriList->firstWhere('slug', $selectedKategori)?->nama ?? $selectedKategori }}</span>
+                        Kategori: <span class="text-[var(--color-primary)]">{{ $kategoriList->firstWhere('slug', $selectedKategori)?->nama ?? $selectedKategori }}</span>
                     @else
-                        Semua Produk
+                        Katalog Makanan
                     @endif
                 </h1>
-                <p class="text-sm text-[#64748B]">{{ $produk->total() }} produk ditemukan</p>
+                <p class="text-sm font-bold text-[var(--color-text-muted)] uppercase tracking-wider mt-1">{{ $produk->total() }} PRODUK DITEMUKAN</p>
             </div>
+            
+            <a href="{{ route('public.kategori.index') }}" class="btn-primary shrink-0 text-sm bg-white hover:bg-[var(--color-surface)]">
+                LIHAT FILTER LENGKAP
+            </a>
         </div>
 
         {{-- Kategori chips --}}
-        <div class="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-3">
+        <div class="flex items-center gap-3 overflow-x-auto scrollbar-hide pb-2">
             <a href="{{ route('public.produk.index', array_filter(['q' => $search])) }}"
                id="chip-all"
-               class="cat-chip {{ !$selectedKategori ? 'active' : '' }} flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold border border-[#E2E8F0] transition whitespace-nowrap">
+               class="cat-chip {{ !$selectedKategori ? 'bg-[var(--color-primary)] text-white shadow-solid-sm -translate-y-1' : 'bg-white text-[var(--color-text)] shadow-sm hover:shadow-solid-sm hover:-translate-y-1' }} flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold border-2 border-[var(--color-border)] transition-all whitespace-nowrap uppercase tracking-wider">
                 🛍️ Semua
             </a>
             @foreach($kategoriList as $kat)
+                @php
+                    $isActive = $selectedKategori === $kat->slug;
+                    $bgColors = ['bg-[#FFB084]', 'bg-[#A3D9C9]', 'bg-[#FFD84D]', 'bg-[#D4C4FB]'];
+                    $randomBg = $bgColors[$loop->index % count($bgColors)];
+                @endphp
                 <a href="{{ route('public.produk.index', array_filter(['kategori' => $kat->slug, 'q' => $search])) }}"
                    id="chip-{{ $kat->slug }}"
-                   class="cat-chip {{ $selectedKategori === $kat->slug ? 'active' : '' }} flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold border border-[#E2E8F0] transition whitespace-nowrap">
+                   class="cat-chip {{ $isActive ? $randomBg . ' text-[var(--color-text)] shadow-solid-sm -translate-y-1' : 'bg-white text-[var(--color-text)] shadow-sm hover:shadow-solid-sm hover:-translate-y-1' }} flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold border-2 border-[var(--color-border)] transition-all whitespace-nowrap uppercase tracking-wider">
                     {{ $kat->nama }}
                 </a>
             @endforeach
@@ -48,17 +57,14 @@
 </div>
 
 {{-- Results Grid --}}
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<main class="max-w-[1400px] mx-auto px-6 lg:px-[60px] py-12 mb-20 bg-[var(--color-bg)] min-h-[50vh]">
     @if($produk->isEmpty())
-        <div class="bg-white border border-[#E2E8F0] rounded-xl p-16 text-center shadow-sm">
-            <div class="w-16 h-16 bg-[#EFF6FF] rounded-xl flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-[#2563EB]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
+        <div class="bg-[var(--color-surface)] border-2 border-dashed border-[var(--color-border)] rounded-[40px] p-16 text-center">
+            <div class="text-[80px] mb-6 grayscale opacity-40">
+                🔍
             </div>
-            <h3 class="text-base font-bold text-[#172033] mb-2">Produk tidak ditemukan</h3>
-            <p class="text-[#64748B] text-sm mb-6 max-w-xs mx-auto">
+            <h3 class="text-3xl font-black text-[var(--color-text)] mb-4 uppercase">Tidak Ketemu Nih</h3>
+            <p class="text-lg font-bold text-[var(--color-text-muted)] mb-8 max-w-md mx-auto">
                 @if($search)
                     Tidak ada produk yang cocok dengan "<strong>{{ $search }}</strong>". Coba gunakan kata kunci lain.
                 @else
@@ -67,17 +73,17 @@
             </p>
             <a href="{{ route('public.produk.index') }}"
                id="btn-kembali-katalog"
-               class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] px-5 py-2.5 rounded-lg transition-colors">
-                Reset Pencarian
+               class="btn-primary inline-flex px-8 py-3 bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)]">
+                RESET PENCARIAN
             </a>
         </div>
     @else
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach($produk as $item)
                 <x-public.product-card :produk="$item" />
             @endforeach
         </div>
-        <div class="mt-10">{{ $produk->links() }}</div>
+        <div class="mt-16">{{ $produk->links() }}</div>
     @endif
 </main>
 

@@ -5,36 +5,36 @@
 
 @section('content')
 
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
+<main class="max-w-[1400px] mx-auto px-6 lg:px-[60px] py-12 lg:py-16">
 
     {{-- ─── Breadcrumb ──────────────────────────────────────────── --}}
-    <nav class="flex items-center gap-1.5 text-sm text-[#64748B] mb-8" aria-label="Breadcrumb">
+    <nav class="flex flex-wrap items-center gap-2 text-sm text-[var(--color-text-muted)] font-bold mb-8 uppercase tracking-widest" aria-label="Breadcrumb">
         <a href="{{ route('public.produk.index') }}"
-           class="hover:text-[#2563EB] transition-colors">Beranda</a>
-        <span class="text-[#CBD5E1]">/</span>
+           class="hover:text-[var(--color-primary)] transition-colors">BERANDA</a>
+        <span class="text-[var(--color-border)]">/</span>
         @if($produk->kategori)
             <a href="{{ route('public.produk.index', ['kategori' => $produk->kategori->slug]) }}"
-               class="hover:text-[#2563EB] transition-colors">
+               class="hover:text-[var(--color-primary)] transition-colors">
                 {{ $produk->kategori->nama }}
             </a>
-            <span class="text-[#CBD5E1]">/</span>
+            <span class="text-[var(--color-border)]">/</span>
         @endif
-        <span class="text-[#172033] font-medium truncate max-w-[200px] sm:max-w-xs">{{ $produk->nama }}</span>
+        <span class="text-[var(--color-text)] truncate max-w-[200px] sm:max-w-xs">{{ $produk->nama }}</span>
     </nav>
 
     {{-- ─── Product Layout ────────────────────────────────────────── --}}
-    <div class="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-sm">
-        <div class="flex flex-col md:flex-row">
+    <div class="bg-[var(--color-surface)] border-4 border-[var(--color-border)] rounded-[40px] overflow-hidden shadow-solid-lg mb-16 relative z-10">
+        <div class="flex flex-col lg:flex-row">
 
             {{-- ── Foto Produk ───────────────────────────────────── --}}
-            <div class="md:w-[48%] bg-[#F8FAFF] relative flex items-center justify-center min-h-[300px] md:min-h-[520px] p-8 lg:p-12">
+            <div class="lg:w-[45%] xl:w-[50%] bg-[#FFD84D] relative flex items-center justify-center min-h-[400px] lg:min-h-[600px] p-8 lg:p-12 border-b-4 lg:border-b-0 lg:border-r-4 border-[var(--color-border)]">
                 @if($produk->foto_utama)
                     <img src="{{ asset('storage/' . $produk->foto_utama) }}"
                          alt="{{ $produk->nama }}"
-                         class="max-w-full max-h-[440px] object-contain rounded-xl"
+                         class="max-w-full max-h-[500px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                          loading="eager">
                 @else
-                    <div class="img-placeholder w-64 h-64 rounded-2xl gap-4 border border-[#E2E8F0] bg-white shadow-soft">
+                    <div class="w-64 h-64 bg-white rounded-full flex flex-col items-center justify-center gap-4 border-4 border-[var(--color-border)] shadow-solid-md">
                         @php
                             $slug  = $produk->kategori->slug ?? '';
                             $catIcons = [
@@ -48,14 +48,14 @@
                         <div class="w-20 h-20 opacity-50 grayscale">
                             <img src="{{ asset('images/icons/' . $iconFile) }}" alt="Placeholder" class="w-full h-full object-contain">
                         </div>
-                        <span class="text-sm font-medium text-[#94A3B8]">Belum ada foto produk</span>
+                        <span class="text-sm font-black text-[var(--color-text-muted)] uppercase tracking-wider">Tanpa Foto</span>
                     </div>
                 @endif
 
                 {{-- Label promosi badge --}}
                 @if($produk->label_promosi)
-                    <div class="absolute top-4 left-4">
-                        <span class="inline-block bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE] text-xs font-bold px-3 py-1 rounded-lg">
+                    <div class="absolute top-6 left-6 rotate-[-5deg]">
+                        <span class="inline-block bg-[var(--color-primary)] text-white border-2 border-[var(--color-border)] shadow-solid-sm text-sm font-black uppercase tracking-widest px-4 py-2 rounded-full">
                             {{ $produk->label_promosi }}
                         </span>
                     </div>
@@ -63,108 +63,83 @@
             </div>
 
             {{-- ── Detail Produk ─────────────────────────────────── --}}
-            <div class="md:w-[52%] p-7 md:p-9 lg:p-11 flex flex-col">
+            <div class="lg:w-[55%] xl:w-[50%] p-8 md:p-12 xl:p-16 flex flex-col bg-white">
 
                 {{-- Kategori --}}
                 <div class="mb-4">
                     <a href="{{ route('public.produk.index', ['kategori' => $produk->kategori->slug ?? '']) }}"
-                       class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-[#2563EB] bg-[#EFF6FF] border border-[#BFDBFE] px-3 py-1 rounded-lg hover:bg-[#DBEAFE] transition-colors">
+                       class="inline-flex items-center text-xs font-black uppercase tracking-widest text-[var(--color-text)] bg-[#A3D9C9] border-2 border-[var(--color-border)] shadow-[2px_2px_0px_0px_var(--color-border)] px-4 py-1.5 rounded-full hover:translate-x-0.5 hover:-translate-y-0.5 transition-transform">
                         {{ $produk->kategori->nama ?? 'Umum' }}
                     </a>
                 </div>
 
                 {{-- Nama --}}
-                <h1 class="text-2xl sm:text-3xl font-bold text-[#172033] leading-tight mb-4">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-[var(--color-text)] leading-[1.1] mb-6 uppercase tracking-tighter">
                     {{ $produk->nama }}
                 </h1>
 
                 {{-- Harga --}}
-                <p class="text-3xl sm:text-4xl font-bold text-[#1D4ED8] mb-5">
+                <p class="text-4xl md:text-5xl font-black text-[var(--color-primary)] mb-8 drop-shadow-sm">
                     Rp {{ number_format($produk->harga, 0, ',', '.') }}
                 </p>
 
-                {{-- Status + Views --}}
-                <div class="flex flex-wrap items-center gap-2.5 mb-7">
+                {{-- Status + Views + Rating Summary Mini --}}
+                <div class="flex flex-wrap items-center gap-4 mb-10">
                     @if($produk->stok === 'ready')
-                        <span class="inline-flex items-center gap-1.5 text-sm font-medium text-[#16A34A] bg-[#F0FDF4] border border-[#BBF7D0] px-3 py-1.5 rounded-lg">
+                        <span class="inline-flex items-center gap-2 text-sm font-black text-[#16A34A] bg-[#BBF7D0] border-2 border-[#16A34A] shadow-[2px_2px_0px_0px_#16A34A] px-4 py-2 rounded-full uppercase tracking-wider">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                             </svg>
                             Tersedia
                         </span>
                     @elseif($produk->stok === 'po')
-                        <span class="inline-flex items-center gap-1.5 text-sm font-medium text-[#92400E] bg-[#FFFBEB] border border-[#FDE68A] px-3 py-1.5 rounded-lg">
+                        <span class="inline-flex items-center gap-2 text-sm font-black text-[#92400E] bg-[#FDE68A] border-2 border-[#92400E] shadow-[2px_2px_0px_0px_#92400E] px-4 py-2 rounded-full uppercase tracking-wider">
                             Pre-Order
                         </span>
                     @else
-                        <span class="inline-flex items-center gap-1.5 text-sm font-medium text-[#DC2626] bg-[#FEF2F2] border border-[#FECACA] px-3 py-1.5 rounded-lg">
+                        <span class="inline-flex items-center gap-2 text-sm font-black text-white bg-[#DC2626] border-2 border-[var(--color-border)] shadow-[2px_2px_0px_0px_var(--color-border)] px-4 py-2 rounded-full uppercase tracking-wider">
                             Stok Habis
                         </span>
                     @endif
 
-                    @if($produk->views > 0)
-                        <span class="inline-flex items-center gap-1.5 text-sm text-[#64748B]">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                            </svg>
-                            {{ number_format($produk->views, 0, ',', '.') }} kali dilihat
-                        </span>
-                    @endif
-                </div>
-
-                {{-- Rating Summary Mini --}}
-                <div class="flex items-center gap-2 mb-7">
                     @if($produk->review_count > 0)
-                        <div class="flex items-center gap-1 bg-[#FFFBEB] px-3 py-1.5 rounded-lg border border-[#FEF3C7]">
-                            <svg class="w-4 h-4 text-[#F59E0B]" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                            </svg>
-                            <span class="text-sm font-bold text-[#92400E]">{{ number_format($produk->average_rating, 1) }}</span>
-                            <span class="text-sm text-[#B45309]">({{ $produk->review_count }} ulasan)</span>
+                        <div class="flex items-center gap-1.5 bg-white px-4 py-2 rounded-full border-2 border-[var(--color-border)] shadow-[2px_2px_0px_0px_var(--color-border)]">
+                            <span class="text-yellow-400 text-lg leading-none">★</span>
+                            <span class="text-sm font-black text-[var(--color-text)]">{{ number_format($produk->average_rating, 1) }}</span>
+                            <span class="text-sm font-bold text-[var(--color-text-muted)]">({{ $produk->review_count }})</span>
                         </div>
-                    @else
-                        <span class="text-sm text-[#94A3B8]">Belum ada rating</span>
+                    @endif
+                    
+                    @if($produk->views > 0)
+                        <span class="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--color-text-muted)]">
+                            👁️ {{ number_format($produk->views, 0, ',', '.') }} views
+                        </span>
                     @endif
                 </div>
 
                 {{-- Deskripsi --}}
                 @if($produk->deskripsi)
-                    <div class="mb-8">
-                        <h2 class="text-xs font-bold text-[#64748B] uppercase tracking-widest mb-2.5">Deskripsi Produk</h2>
-                        <p class="text-sm text-[#64748B] leading-relaxed whitespace-pre-wrap">{{ $produk->deskripsi }}</p>
+                    <div class="mb-10 bg-[var(--color-bg)] p-6 rounded-3xl border-2 border-[var(--color-border)] shadow-solid-sm">
+                        <h2 class="text-sm font-black text-[var(--color-text)] uppercase tracking-widest mb-3">TENTANG PRODUK INI</h2>
+                        <p class="text-base font-bold text-[var(--color-text-muted)] leading-relaxed whitespace-pre-wrap">{{ $produk->deskripsi }}</p>
                     </div>
                 @endif
 
                 {{-- Seller Info + CTA --}}
-                <div class="border-t border-[#E2E8F0] pt-7 mt-auto">
-                    <h2 class="text-xs font-bold text-[#64748B] uppercase tracking-widest mb-4">Dijual oleh</h2>
-
+                <div class="mt-auto">
                     {{-- Toko card --}}
-                    <div class="flex items-start gap-3.5 mb-7 p-4 bg-[#F8FAFF] border border-[#E2E8F0] rounded-xl">
-                        <div class="w-12 h-12 rounded-xl bg-[#EFF6FF] border border-[#DBEAFE] flex items-center justify-center text-[#2563EB] font-bold text-xl flex-shrink-0">
+                    <div class="flex items-center gap-4 mb-8 p-4 bg-[#D4C4FB] border-2 border-[var(--color-border)] rounded-[24px] shadow-solid-sm transform rotate-1">
+                        <div class="w-16 h-16 rounded-full bg-white border-2 border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] font-black text-2xl flex-shrink-0 shadow-sm">
                             {{ strtoupper(substr($produk->penjual->nama_toko ?? '?', 0, 1)) }}
                         </div>
                         <div class="min-w-0">
-                            <div class="font-bold text-[#172033] text-base leading-snug">
+                            <h2 class="text-xs font-black text-[var(--color-text)] opacity-70 uppercase tracking-widest mb-1">DIJUAL OLEH</h2>
+                            <div class="font-black text-[var(--color-text)] text-xl leading-snug uppercase">
                                 {{ $produk->penjual->nama_toko ?? '-' }}
                             </div>
-                            @if($produk->penjual->user)
-                                <div class="text-sm text-[#64748B] mt-0.5">
-                                    Pemilik: {{ $produk->penjual->user->name }}
-                                </div>
-                            @endif
                             @if($produk->penjual->lokasi_kelas)
-                                <div class="flex items-center gap-1.5 text-sm text-[#64748B] mt-0.5">
-                                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                    </svg>
-                                    Lokasi: {{ $produk->penjual->lokasi_kelas }}
+                                <div class="flex items-center gap-1 text-sm font-bold text-[var(--color-text-muted)] mt-1">
+                                    📍 {{ $produk->penjual->lokasi_kelas }}
                                 </div>
                             @endif
                         </div>
@@ -185,17 +160,13 @@
                     <a href="{{ $waLink }}"
                        target="_blank"
                        rel="noopener noreferrer"
-                       id="btn-hubungi-penjual"
-                       class="wa-btn w-full flex items-center justify-center gap-3 text-white font-bold py-4 px-6 rounded-xl text-base mb-3 shadow-sm"
+                       class="btn-primary w-full flex items-center justify-center gap-3 bg-[#25D366] text-white hover:bg-[#128C7E] py-5 px-6 rounded-2xl text-lg uppercase tracking-wider mb-4 border-2 border-[var(--color-border)] shadow-solid-md hover:shadow-solid-lg"
                        aria-label="Hubungi {{ $produk->penjual->nama_toko ?? 'penjual' }} melalui WhatsApp">
-                        <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 3.825 0 6.938 3.112 6.938 6.937 0 3.825-3.113 6.938-6.938 6.938z"/>
-                        </svg>
-                        Hubungi Penjual via WhatsApp
+                        💬 HUBUNGI VIA WHATSAPP
                     </a>
 
-                    <p class="text-xs text-[#94A3B8] text-center leading-relaxed">
-                        Hubungi penjual untuk menanyakan ketersediaan dan pemesanan. Transaksi dilakukan langsung dengan penjual.
+                    <p class="text-xs font-bold text-[var(--color-text-muted)] text-center leading-relaxed">
+                        Transaksi dilakukan langsung dengan penjual di luar platform.
                     </p>
                 </div>
 
@@ -203,141 +174,130 @@
         </div>
     </div>
 
-    {{-- ─── Cara Pemesanan Mini Section ─────────────────────────────── --}}
-    <div class="mt-6 bg-[#EFF6FF] border border-[#BFDBFE] rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row gap-6 items-start shadow-sm">
-        <div class="w-12 h-12 bg-white text-[#2563EB] rounded-xl flex items-center justify-center text-2xl flex-shrink-0 shadow-sm border border-[#DBEAFE]">
-            💡
-        </div>
-        <div>
-            <h2 class="text-lg font-bold text-[#1D4ED8] mb-3">Cara Pemesanan</h2>
-            <ol class="list-decimal list-inside space-y-2 text-sm text-[#1E3A8A] mb-4">
-                <li><span class="font-medium text-[#172033]">Hubungi penjual</span> melalui WhatsApp.</li>
-                <li><span class="font-medium text-[#172033]">Tanyakan ketersediaan</span> produk.</li>
-                <li><span class="font-medium text-[#172033]">Tentukan jumlah dan waktu pengambilan</span>/pemesanan dengan penjual.</li>
-                <li><span class="font-medium text-[#172033]">Ikuti kesepakatan pemesanan</span> yang diberikan oleh penjual.</li>
-            </ol>
-            <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-[#DBEAFE] text-xs font-semibold text-[#2563EB]">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Transaksi dan pembayaran dilakukan langsung dengan penjual di luar SiswaMart.
-            </div>
-        </div>
-    </div>
+    <div class="grid lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2 space-y-10">
+            {{-- ─── Rating & Ulasan ─────────────────────────────────────────── --}}
+            <div class="bg-[var(--color-surface)] border-4 border-[var(--color-border)] rounded-[40px] p-8 lg:p-12 shadow-solid-md relative">
+                {{-- Decorative Blob --}}
+                <div class="absolute -top-6 -right-6 w-20 h-20 bg-[#FFB084] border-4 border-[var(--color-border)] rounded-full shadow-solid-sm z-0 flex items-center justify-center text-3xl transform rotate-12">
+                    ⭐
+                </div>
 
-    {{-- ─── Rating & Ulasan ─────────────────────────────────────────── --}}
-    <div class="mt-8 bg-white border border-[#E2E8F0] rounded-2xl p-6 lg:p-10 shadow-sm">
-        <h2 class="text-xl font-bold text-[#172033] mb-6">Rating & Ulasan</h2>
+                <h2 class="text-3xl font-black text-[var(--color-text)] mb-8 uppercase tracking-tighter relative z-10">Kata Mereka</h2>
 
-        <div class="flex flex-col lg:flex-row gap-10">
-            {{-- Bagian Summary & List --}}
-            <div class="lg:w-7/12">
                 {{-- Summary --}}
-                <div class="flex items-center gap-6 mb-8 p-6 bg-[#F8FAFF] rounded-xl border border-[#E2E8F0]">
-                    <div class="text-center">
-                        <div class="text-4xl font-black text-[#172033]">{{ number_format($produk->average_rating, 1) }} <span class="text-xl text-[#94A3B8] font-medium">/ 5</span></div>
-                        <div class="flex text-[#F59E0B] my-1 justify-center">
-                            @for($i=1; $i<=5; $i++)
-                                <svg class="w-5 h-5 {{ $i <= round($produk->average_rating) ? 'text-[#F59E0B]' : 'text-[#CBD5E1]' }}" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                                </svg>
-                            @endfor
+                <div class="flex flex-col sm:flex-row items-center gap-8 mb-10 p-8 bg-white rounded-3xl border-2 border-[var(--color-border)] shadow-solid-sm relative z-10">
+                    <div class="text-center sm:text-left">
+                        <div class="text-6xl font-black text-[var(--color-text)]">{{ number_format($produk->average_rating, 1) }}</div>
+                        <div class="text-sm font-bold text-[var(--color-text-muted)] uppercase tracking-wider mt-2">{{ $produk->review_count }} ULASAN</div>
+                    </div>
+                    <div class="hidden sm:block w-0.5 h-16 bg-[var(--color-border)]"></div>
+                    <div class="flex flex-col gap-1">
+                        <div class="flex items-center gap-2">
+                            <div class="flex text-yellow-400 text-xl tracking-tighter">★★★★★</div>
                         </div>
-                        <div class="text-sm text-[#64748B]">{{ $produk->review_count }} ulasan</div>
                     </div>
                 </div>
 
                 {{-- List --}}
                 @if($ulasan->isEmpty())
-                    <p class="text-[#64748B] text-sm italic">Belum ada ulasan untuk produk ini. Jadilah yang pertama memberikan penilaian!</p>
+                    <div class="text-center py-8">
+                        <p class="text-lg font-bold text-[var(--color-text-muted)]">Belum ada ulasan untuk produk ini. Jadilah yang pertama!</p>
+                    </div>
                 @else
-                    <div class="space-y-6">
+                    <div class="space-y-6 relative z-10">
                         @foreach($ulasan as $rev)
-                            <div class="border-b border-[#F1F5F9] pb-6 last:border-0 last:pb-0">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <div class="flex text-[#F59E0B]">
+                            <div class="bg-white p-6 rounded-3xl border-2 border-[var(--color-border)] shadow-[4px_4px_0px_0px_var(--color-border)]">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="font-black text-[var(--color-text)] uppercase text-lg">{{ $rev->guest_username }}</div>
+                                    <div class="flex text-yellow-400 text-sm tracking-tighter">
                                         @for($i=1; $i<=5; $i++)
-                                            <svg class="w-3.5 h-3.5 {{ $i <= $rev->rating ? 'text-[#F59E0B]' : 'text-[#CBD5E1]' }}" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                                            </svg>
+                                            {{ $i <= $rev->rating ? '★' : '☆' }}
                                         @endfor
                                     </div>
-                                    <span class="text-xs text-[#94A3B8]">{{ $rev->created_at->diffForHumans() }}</span>
                                 </div>
                                 @if($rev->komentar)
-                                    <p class="text-sm text-[#475569] mb-2">{{ $rev->komentar }}</p>
+                                    <p class="text-base font-bold text-[var(--color-text-muted)] mb-3">{{ $rev->komentar }}</p>
                                 @endif
-                                <div class="text-xs font-semibold text-[#172033]">&mdash; {{ $rev->guest_username }}</div>
+                                <div class="text-xs font-bold text-[var(--color-text-muted)] opacity-50 uppercase tracking-widest">{{ $rev->created_at->diffForHumans() }}</div>
                             </div>
                         @endforeach
                     </div>
                 @endif
             </div>
-
+            
             {{-- Form Review --}}
-            <div class="lg:w-5/12">
-                <div class="bg-[#F8FAFF] p-6 rounded-xl border border-[#E2E8F0]">
-                    <h3 class="font-bold text-[#172033] mb-4">Bagikan pengalamanmu</h3>
-                    
-                    @if(session('success'))
-                        <div class="bg-[#F0FDF4] border border-[#BBF7D0] text-[#16A34A] px-4 py-3 rounded-lg text-sm font-medium mb-4">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+            <div class="bg-[#FFF8E8] border-4 border-[var(--color-border)] rounded-[40px] p-8 lg:p-12 shadow-solid-md transform -rotate-1">
+                <h3 class="text-2xl font-black text-[var(--color-text)] mb-6 uppercase tracking-tighter">Beri Penilaianmu!</h3>
+                
+                @if(session('success'))
+                    <div class="bg-[#BBF7D0] border-2 border-[#16A34A] text-[#16A34A] font-bold px-4 py-3 rounded-2xl mb-6 shadow-solid-sm">
+                        🎉 {{ session('success') }}
+                    </div>
+                @endif
 
-                    <form action="{{ route('public.ulasan.store', $produk->slug) }}" method="POST" x-data="{ rating: {{ old('rating', 0) }}, hoverRating: 0 }">
-                        @csrf
-                        {{-- Star Selector --}}
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-[#64748B] mb-2">Penilaian <span class="text-red-500">*</span></label>
-                            <div class="flex gap-1 cursor-pointer" @mouseleave="hoverRating = 0">
-                                <template x-for="i in 5">
-                                    <svg @click="rating = i" @mouseenter="hoverRating = i" 
-                                         class="w-8 h-8 transition-colors" 
-                                         :class="{'text-[#F59E0B]': i <= (hoverRating || rating), 'text-[#CBD5E1]': i > (hoverRating || rating)}"
-                                         fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                                    </svg>
-                                </template>
-                            </div>
-                            <input type="hidden" name="rating" x-model="rating">
-                            @error('rating') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
+                <form action="{{ route('public.ulasan.store', $produk->slug) }}" method="POST" x-data="{ rating: {{ old('rating', 0) }}, hoverRating: 0 }">
+                    @csrf
+                    {{-- Star Selector --}}
+                    <div class="mb-6">
+                        <label class="block text-sm font-black text-[var(--color-text)] uppercase tracking-widest mb-3">Bintang <span class="text-red-500">*</span></label>
+                        <div class="flex gap-2 cursor-pointer" @mouseleave="hoverRating = 0">
+                            <template x-for="i in 5">
+                                <span @click="rating = i" @mouseenter="hoverRating = i" 
+                                      class="text-4xl transition-transform hover:scale-110 select-none" 
+                                      :class="{'text-yellow-400 drop-shadow-sm': i <= (hoverRating || rating), 'text-gray-300 grayscale': i > (hoverRating || rating)}">
+                                    ★
+                                </span>
+                            </template>
                         </div>
+                        <input type="hidden" name="rating" x-model="rating">
+                        @error('rating') <span class="text-xs font-bold text-red-500 mt-2 block">{{ $message }}</span> @enderror
+                    </div>
 
-                        {{-- Nama --}}
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-[#64748B] mb-1">Nama Kamu <span class="text-red-500">*</span></label>
-                            <input type="text" name="guest_username" value="{{ old('guest_username') }}" required maxlength="100" class="w-full px-3 py-2 text-sm border border-[#E2E8F0] rounded-lg focus:ring-[#2563EB] focus:border-[#2563EB]" placeholder="Nama atau julukan">
-                            @error('guest_username') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
-                        </div>
+                    {{-- Nama --}}
+                    <div class="mb-6">
+                        <label class="block text-sm font-black text-[var(--color-text)] uppercase tracking-widest mb-2">Namamu <span class="text-red-500">*</span></label>
+                        <input type="text" name="guest_username" value="{{ old('guest_username') }}" required maxlength="100" class="w-full px-4 py-3 text-base font-bold bg-white border-2 border-[var(--color-border)] rounded-2xl shadow-[4px_4px_0px_0px_var(--color-border)] focus:outline-none focus:translate-x-1 focus:translate-y-1 focus:shadow-none transition-all" placeholder="Siapa namamu?">
+                        @error('guest_username') <span class="text-xs font-bold text-red-500 mt-2 block">{{ $message }}</span> @enderror
+                    </div>
 
-                        {{-- Komentar --}}
-                        <div class="mb-5">
-                            <label class="block text-sm font-medium text-[#64748B] mb-1">Komentar (Opsional)</label>
-                            <textarea name="komentar" rows="3" maxlength="1000" class="w-full px-3 py-2 text-sm border border-[#E2E8F0] rounded-lg focus:ring-[#2563EB] focus:border-[#2563EB]" placeholder="Tulis pengalaman atau pendapatmu...">{{ old('komentar') }}</textarea>
-                            @error('komentar') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
-                        </div>
+                    {{-- Komentar --}}
+                    <div class="mb-8">
+                        <label class="block text-sm font-black text-[var(--color-text)] uppercase tracking-widest mb-2">Komentar</label>
+                        <textarea name="komentar" rows="3" maxlength="1000" class="w-full px-4 py-3 text-base font-bold bg-white border-2 border-[var(--color-border)] rounded-2xl shadow-[4px_4px_0px_0px_var(--color-border)] focus:outline-none focus:translate-x-1 focus:translate-y-1 focus:shadow-none transition-all" placeholder="Gimana rasanya?">{{ old('komentar') }}</textarea>
+                        @error('komentar') <span class="text-xs font-bold text-red-500 mt-2 block">{{ $message }}</span> @enderror
+                    </div>
 
-                        <button type="submit" class="btn-primary w-full py-2.5 text-sm font-semibold rounded-lg shadow-soft">
-                            Kirim Ulasan
-                        </button>
-                    </form>
+                    <button type="submit" class="btn-primary w-full py-4 text-lg bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)]">
+                        KIRIM ULASAN SEKARANG
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="lg:col-span-1">
+             {{-- ─── Cara Pemesanan Mini Section ─────────────────────────────── --}}
+            <div class="bg-[#A3D9C9] border-4 border-[var(--color-border)] rounded-[40px] p-8 shadow-solid-md transform rotate-1 sticky top-24">
+                <div class="w-16 h-16 bg-white border-4 border-[var(--color-border)] rounded-full flex items-center justify-center text-3xl mb-6 shadow-[4px_4px_0px_0px_var(--color-border)] transform -rotate-12">
+                    🛒
                 </div>
+                <h2 class="text-2xl font-black text-[var(--color-text)] mb-6 uppercase tracking-tighter">Cara Beli</h2>
+                <ol class="list-decimal list-inside space-y-4 text-base font-bold text-[var(--color-text)] mb-8">
+                    <li><span class="bg-white px-2 py-0.5 border border-[var(--color-border)] rounded-md shadow-sm">Chat Penjual</span> via WA.</li>
+                    <li>Tanya produk masih ada/nggak.</li>
+                    <li>Janji ketemu di sekolah buat transaksi.</li>
+                    <li>Bayar pakai uang pas ya!</li>
+                </ol>
             </div>
         </div>
     </div>
 
     {{-- ─── Produk Terkait ─────────────────────────────────────────── --}}
     @if($produkTerkait && $produkTerkait->isNotEmpty())
-        <div class="mt-12">
-            <div class="flex items-end justify-between mb-6">
-                <div>
-                    <h2 class="text-xl font-bold text-[#172033]">Produk Lainnya</h2>
-                    <p class="text-[#64748B] text-sm mt-1">Mungkin kamu juga suka dari kategori yang sama</p>
-                </div>
-            </div>
+        <div class="mt-24 pt-16 border-t-4 border-[var(--color-border)]">
+            <h2 class="text-4xl font-black text-[var(--color-text)] mb-10 uppercase tracking-tighter text-center">Boleh Dicoba Juga Nih</h2>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach($produkTerkait as $item)
                     <x-public.product-card :produk="$item" />
                 @endforeach

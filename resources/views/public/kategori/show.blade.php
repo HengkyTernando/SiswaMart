@@ -8,25 +8,26 @@
 <style>
 .range-slider input[type="range"]::-webkit-slider-thumb {
     pointer-events: auto;
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background: transparent;
+    background: var(--color-primary);
+    border: 2px solid var(--color-border);
     cursor: pointer;
     -webkit-appearance: none;
 }
 .range-slider input[type="range"]::-moz-range-thumb {
     pointer-events: auto;
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background: transparent;
+    background: var(--color-primary);
+    border: 2px solid var(--color-border);
     cursor: pointer;
-    border: none;
 }
 </style>
 
-<div class="bg-[#F8FAFC] min-h-screen pb-16 pt-8" x-data="{
+<div class="bg-[var(--color-bg)] min-h-screen pb-20 pt-8" x-data="{
     q: '{{ $search ?? '' }}',
     sort: '{{ $sort ?? 'terbaru' }}',
     min_price: '{{ $minPrice ?? '' }}',
@@ -76,36 +77,33 @@
         <input type="hidden" name="max_price" x-model="max_price">
     </form>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-[60px]">
         
         {{-- ─── Breadcrumb ────────────────────────────────────────────── --}}
-        <nav class="flex items-center gap-2 text-sm text-[#64748B] mb-6" aria-label="Breadcrumb">
-            <a href="{{ route('public.home') }}" class="hover:text-[#2563EB] transition-colors">Beranda</a>
-            <svg class="w-4 h-4 text-[#CBD5E1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-            <a href="{{ route('public.kategori.index') }}" class="hover:text-[#2563EB] transition-colors">Kategori</a>
-            <svg class="w-4 h-4 text-[#CBD5E1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-            <span class="text-[#172033] font-medium">{{ $kategori->nama }}</span>
+        <nav class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] font-bold mb-8 uppercase tracking-widest" aria-label="Breadcrumb">
+            <a href="{{ route('public.home') }}" class="hover:text-[var(--color-primary)] transition-colors">BERANDA</a>
+            <span class="text-[var(--color-border)]">/</span>
+            <a href="{{ route('public.kategori.index') }}" class="hover:text-[var(--color-primary)] transition-colors">KATEGORI</a>
+            <span class="text-[var(--color-border)]">/</span>
+            <span class="text-[var(--color-text)] uppercase">{{ $kategori->nama }}</span>
         </nav>
 
         {{-- ─── Header Section ────────────────────────────────────────── --}}
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 border-b border-[#E2E8F0] pb-6">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 border-b-4 border-[var(--color-border)] pb-8">
             <div>
-                <h1 class="text-3xl font-bold text-[#172033] mb-2">{{ $kategori->nama }}</h1>
-                <p class="text-sm text-[#64748B]">Temukan berbagai {{ strtolower($kategori->nama) }} lezat pilihan siswa.</p>
+                <h1 class="text-5xl font-black text-[var(--color-text)] mb-3 uppercase tracking-tighter">{{ $kategori->nama }}</h1>
+                <p class="text-lg font-bold text-[var(--color-text-muted)]">Temukan berbagai {{ strtolower($kategori->nama) }} lezat pilihan siswa.</p>
             </div>
             
-            <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-                <span class="text-sm text-[#64748B] whitespace-nowrap">{{ $produk->total() }} produk ditemukan</span>
-                
+            <div class="flex flex-col sm:flex-row items-center gap-6 w-full lg:w-auto">
+                <div class="bg-white border-2 border-[var(--color-border)] px-4 py-2 rounded-full font-bold shadow-solid-sm text-sm">
+                    {{ $produk->total() }} PRODUK
+                </div>
 
-                <div class="flex items-center gap-2 w-full sm:w-auto">
-                    <span class="text-sm text-[#64748B] whitespace-nowrap">Urutkan:</span>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <span class="text-sm font-bold text-[var(--color-text-muted)] uppercase tracking-wider">URUTKAN</span>
                     <select x-model="sort" @change="submitForm()"
-                            class="w-full sm:w-auto pl-3 pr-8 py-2 text-sm font-medium border border-[#E2E8F0] bg-white rounded-lg focus:ring-2 focus:ring-[#2563EB] focus:border-[#2563EB] outline-none appearance-none cursor-pointer">
+                            class="w-full sm:w-auto pl-4 pr-10 py-3 text-sm font-bold uppercase tracking-wider border-2 border-[var(--color-border)] bg-white rounded-xl shadow-solid-sm focus:outline-none focus:ring-0 appearance-none cursor-pointer hover:-translate-y-0.5 transition-transform">
                         <option value="terbaru">Terbaru</option>
                         <option value="terpopuler">Terpopuler</option>
                         <option value="termurah">Termurah</option>
@@ -115,79 +113,51 @@
             </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row gap-8">
-
-            {{-- ─── Mobile Category Horizontal Scroll ─────────────────── --}}
-            <div class="lg:hidden w-full overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
-                <div class="flex gap-2 w-max pb-2">
-                    <a href="{{ route('public.kategori.index') }}"
-                       class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-[#64748B] border border-[#E2E8F0] bg-white hover:bg-[#F8FAFC] hover:text-[#172033] transition-colors shadow-sm">
-                        Semua Kategori
-                        <span class="text-xs bg-[#F1F5F9] text-[#64748B] px-1.5 py-0.5 rounded-md">{{ $totalSemua }}</span>
-                    </a>
-                    @foreach($kategoriList as $kat)
-                        @if($kat->produk_count > 0)
-                            @if($kat->id === $kategori->id)
-                                <a href="{{ route('public.kategori.show', $kat->slug) }}"
-                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-colors bg-[#EFF6FF] text-[#2563EB] border border-[#BFDBFE]">
-                                    {{ $kat->nama }}
-                                    <span class="text-xs bg-[#DBEAFE] text-[#1D4ED8] px-1.5 py-0.5 rounded-md">{{ $kat->produk_count }}</span>
-                                </a>
-                            @else
-                                <a href="{{ route('public.kategori.show', $kat->slug) }}"
-                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-[#64748B] border border-[#E2E8F0] bg-white hover:bg-[#F8FAFC] hover:text-[#172033] transition-colors shadow-sm">
-                                    {{ $kat->nama }}
-                                    <span class="text-xs bg-[#F1F5F9] text-[#64748B] px-1.5 py-0.5 rounded-md">{{ $kat->produk_count }}</span>
-                                </a>
-                            @endif
-                        @endif
-                    @endforeach
-                </div>
-            </div>
+        <div class="flex flex-col lg:flex-row gap-10">
 
             {{-- ─── Sidebar (Desktop) ──────────────────────── --}}
-            <aside class="hidden lg:block w-64 flex-shrink-0">
-                <div class="sticky top-24 space-y-6">
+            <aside class="w-full lg:w-[320px] flex-shrink-0">
+                <div class="sticky top-24 space-y-8">
                     
                     {{-- Card Kategori --}}
-                    <div class="bg-white rounded-xl border border-[#E2E8F0] shadow-sm p-4">
-                        <h2 class="text-sm font-bold text-[#172033] mb-4">Kategori</h2>
-                        <ul class="space-y-1">
+                    <div class="bg-[var(--color-surface)] rounded-3xl border-2 border-[var(--color-border)] shadow-solid-md p-6">
+                        <h2 class="text-xl font-black text-[var(--color-text)] mb-6 uppercase tracking-wider">Kategori</h2>
+                        <ul class="space-y-3">
                             <li>
                                 <a href="{{ route('public.kategori.index') }}"
-                                   class="flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-[#64748B] hover:bg-[#F8FAFC] hover:text-[#2563EB] border-l-4 border-transparent transition-colors group">
+                                   class="flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-bold text-[var(--color-text)] bg-white border-2 border-[var(--color-border)] shadow-sm hover:shadow-solid-sm hover:-translate-y-1 transition-all group">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-7 h-7 bg-[#F1F5F9] rounded-full flex items-center justify-center p-1.5 flex-shrink-0">
+                                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1.5 flex-shrink-0 border-2 border-[var(--color-border)]">
                                             <img src="{{ asset('images/icons/bag.svg') }}" alt="Semua Kategori" class="w-full h-full object-contain">
                                         </div>
-                                        <span class="group-hover:font-semibold">Semua Kategori</span>
+                                        <span class="uppercase tracking-wider">Semua Kategori</span>
                                     </div>
-                                    <span class="text-xs font-medium group-hover:font-semibold">{{ $totalSemua }}</span>
+                                    <span class="text-xs bg-[var(--color-bg)] px-2 py-1 rounded-full border-2 border-[var(--color-border)]">{{ $totalSemua }}</span>
                                 </a>
                             </li>
                             @foreach($kategoriList as $kat)
                                 @if($kat->produk_count > 0)
                                     @php
                                         $catData = [
-                                            'makanan' => ['icon'=>'food.svg', 'bg'=>'bg-[#FEE2E2]'],
-                                            'minuman' => ['icon'=>'drink.svg', 'bg'=>'bg-[#DBEAFE]'],
-                                            'snack' => ['icon'=>'snack.svg', 'bg'=>'bg-[#FEF08A]'],
-                                            'dessert' => ['icon'=>'dessert.svg', 'bg'=>'bg-[#F3E8FF]'],
+                                            'makanan' => ['icon'=>'food.svg', 'bg'=>'bg-[#FFB084]', 'hover'=>'hover:bg-[#FFB084]'],
+                                            'minuman' => ['icon'=>'drink.svg', 'bg'=>'bg-[#A3D9C9]', 'hover'=>'hover:bg-[#A3D9C9]'],
+                                            'snack' => ['icon'=>'snack.svg', 'bg'=>'bg-[#FFD84D]', 'hover'=>'hover:bg-[#FFD84D]'],
+                                            'dessert' => ['icon'=>'dessert.svg', 'bg'=>'bg-[#D4C4FB]', 'hover'=>'hover:bg-[#D4C4FB]'],
                                         ];
-                                        $data = $catData[$kat->slug] ?? ['icon'=>'bag.svg', 'bg'=>'bg-[#F1F5F9]'];
+                                        $data = $catData[$kat->slug] ?? ['icon'=>'bag.svg', 'bg'=>'bg-[#FFF8E8]', 'hover'=>'hover:bg-[#FFF8E8]'];
                                         $isActive = $kat->id === $kategori->id;
                                     @endphp
                                     <li>
                                         <a href="{{ route('public.kategori.show', $kat->slug) }}"
-                                           class="flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors group
-                                           {{ $isActive ? 'font-semibold bg-[#EFF6FF] text-[#2563EB] border-l-4 border-[#2563EB]' : 'font-medium text-[#64748B] hover:bg-[#F8FAFC] hover:text-[#2563EB] border-l-4 border-transparent' }}">
+                                           class="flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-bold transition-all group 
+                                           {{ $isActive ? 'bg-[var(--color-primary)] text-white border-2 border-[var(--color-border)] shadow-solid-sm' : 'text-[var(--color-text)] bg-white border-2 border-[var(--color-border)] shadow-sm hover:shadow-solid-sm hover:-translate-y-1 ' . $data['hover'] }}">
                                             <div class="flex items-center gap-3">
-                                                <div class="w-7 h-7 {{ $data['bg'] }} rounded-full flex items-center justify-center p-1.5 flex-shrink-0">
+                                                <div class="w-8 h-8 {{ $isActive ? 'bg-white' : $data['bg'] }} rounded-full flex items-center justify-center p-1.5 flex-shrink-0 border-2 border-[var(--color-border)]">
                                                     <img src="{{ asset('images/icons/' . $data['icon']) }}" alt="{{ $kat->nama }}" class="w-full h-full object-contain">
                                                 </div>
-                                                <span class="{{ !$isActive ? 'group-hover:font-semibold' : '' }}">{{ $kat->nama }}</span>
+                                                <span class="uppercase tracking-wider">{{ $kat->nama }}</span>
                                             </div>
-                                            <span class="text-xs {{ $isActive ? 'font-semibold bg-[#DBEAFE] text-[#1D4ED8]' : 'font-medium group-hover:font-semibold' }} px-1.5 py-0.5 rounded-md">{{ $kat->produk_count }}</span>
+                                            <span class="text-xs {{ $isActive ? 'bg-white text-[var(--color-text)]' : 'bg-[var(--color-bg)] text-[var(--color-text)]' }} px-2 py-1 rounded-full border-2 border-[var(--color-border)]">{{ $kat->produk_count }}</span>
                                         </a>
                                     </li>
                                 @endif
@@ -196,52 +166,46 @@
                     </div>
 
                     {{-- Card Filter Harga --}}
-                    <div class="bg-white rounded-xl border border-[#E2E8F0] shadow-sm p-5">
-                        <h2 class="text-sm font-bold text-[#172033] mb-4">Filter Harga</h2>
+                    <div class="bg-[var(--color-surface)] rounded-3xl border-2 border-[var(--color-border)] shadow-solid-md p-6">
+                        <h2 class="text-xl font-black text-[var(--color-text)] mb-6 uppercase tracking-wider">Filter Harga</h2>
                         
                         {{-- Range visualization --}}
-                        <div class="mb-4">
-                            <div class="flex justify-between text-xs text-[#94A3B8] mb-2">
-                                <span>Rentang Harga</span>
-                                <span>Rp0 - Rp50.000</span>
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">
+                                <span>Min</span>
+                                <span>Max</span>
                             </div>
-                            <div class="relative h-1.5 bg-[#E2E8F0] rounded-full range-slider">
-                                <div class="absolute top-0 h-full bg-[#2563EB] rounded-full"
+                            <div class="relative h-3 bg-white border-2 border-[var(--color-border)] rounded-full range-slider">
+                                <div class="absolute top-0 h-full bg-[var(--color-primary)] border-y-2 border-[var(--color-border)]"
                                      x-bind:style="`left: ${(sliderMin / 50000) * 100}%; right: ${100 - (sliderMax / 50000) * 100}%;`"></div>
                                 
                                 <input type="range" min="0" max="50000" step="1000" 
                                        x-model="sliderMin" 
                                        @input="if(sliderMin > sliderMax) sliderMin = sliderMax"
-                                       class="absolute w-full h-1.5 opacity-0 cursor-pointer pointer-events-none appearance-none z-20">
+                                       class="absolute w-full h-3 opacity-0 cursor-pointer pointer-events-none appearance-none z-20">
                                        
                                 <input type="range" min="0" max="50000" step="1000" 
                                        x-model="sliderMax" 
                                        @input="if(sliderMax < sliderMin) sliderMax = sliderMin"
-                                       class="absolute w-full h-1.5 opacity-0 cursor-pointer pointer-events-none appearance-none z-20">
-                                       
-                                <div class="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-[#2563EB] rounded-full shadow pointer-events-none z-10"
-                                     x-bind:style="`left: calc(${(sliderMin / 50000) * 100}% - 7px);`"></div>
-                                
-                                <div class="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-[#2563EB] rounded-full shadow pointer-events-none z-10"
-                                     x-bind:style="`left: calc(${(sliderMax / 50000) * 100}% - 7px);`"></div>
+                                       class="absolute w-full h-3 opacity-0 cursor-pointer pointer-events-none appearance-none z-20">
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-2 mb-4">
+                        <div class="flex items-center gap-3 mb-6">
                             <div class="flex-1">
-                                <label class="text-xs text-[#64748B] block mb-1">Rp Min</label>
-                                <input type="text" x-model="min_price" @input="min_price = min_price.toString().replace(/[^0-9]/g, '')" @change="validateInput()" placeholder="0" class="w-full px-2 py-1.5 text-sm border border-[#E2E8F0] rounded-md focus:border-[#2563EB] outline-none">
+                                <label class="text-xs font-bold text-[var(--color-text-muted)] block mb-2 uppercase tracking-wider">Min (Rp)</label>
+                                <input type="text" x-model="min_price" @input="min_price = min_price.toString().replace(/[^0-9]/g, '')" @change="validateInput()" placeholder="0" class="w-full px-3 py-2 text-sm font-bold border-2 border-[var(--color-border)] rounded-xl focus:outline-none focus:ring-0">
                             </div>
                             <div class="flex-1">
-                                <label class="text-xs text-[#64748B] block mb-1">Rp Max</label>
-                                <input type="text" x-model="max_price" @input="max_price = max_price.toString().replace(/[^0-9]/g, '')" @change="validateInput()" placeholder="50000" class="w-full px-2 py-1.5 text-sm border border-[#E2E8F0] rounded-md focus:border-[#2563EB] outline-none">
+                                <label class="text-xs font-bold text-[var(--color-text-muted)] block mb-2 uppercase tracking-wider">Max (Rp)</label>
+                                <input type="text" x-model="max_price" @input="max_price = max_price.toString().replace(/[^0-9]/g, '')" @change="validateInput()" placeholder="50000" class="w-full px-3 py-2 text-sm font-bold border-2 border-[var(--color-border)] rounded-xl focus:outline-none focus:ring-0">
                             </div>
                         </div>
 
-                        <button @click="submitForm()" class="w-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-semibold py-2 rounded-lg transition-colors mb-3">
-                            Terapkan Filter
+                        <button @click="submitForm()" class="btn-primary w-full bg-[var(--color-primary)] text-white text-sm py-3 mb-3 hover:bg-[var(--color-primary-dark)]">
+                            TERAPKAN FILTER
                         </button>
-                        <button @click="resetFilter()" class="w-full text-center text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors">
+                        <button @click="resetFilter()" class="w-full text-center text-xs font-bold text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors uppercase tracking-wider">
                             Reset Filter
                         </button>
                     </div>
@@ -254,33 +218,31 @@
                 
                 {{-- Product Grid --}}
                 @if($produk->isEmpty())
-                    <div class="bg-white border border-[#E2E8F0] rounded-xl p-12 lg:p-16 text-center shadow-sm">
-                        <div class="w-16 h-16 bg-[#F8FAFC] rounded-2xl flex items-center justify-center mx-auto mb-4 border border-[#E2E8F0]">
-                            <svg class="w-8 h-8 text-[#94A3B8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
+                    <div class="bg-[var(--color-surface)] border-2 border-dashed border-[var(--color-border)] rounded-[40px] p-12 lg:p-20 text-center">
+                        <div class="text-[80px] mb-6 grayscale opacity-40">
+                            🕵️
                         </div>
-                        <h3 class="text-lg font-bold text-[#172033] mb-2">Belum ada produk</h3>
-                        <p class="text-[#64748B] text-sm mb-6 max-w-sm mx-auto">
+                        <h3 class="text-3xl font-black text-[var(--color-text)] mb-4 uppercase">Kosong Melompong!</h3>
+                        <p class="text-lg font-bold text-[var(--color-text-muted)] mb-8 max-w-md mx-auto">
                             @if($search || $minPrice || $maxPrice)
-                                Tidak ada produk aktif yang cocok dengan filter pencarian Anda.
+                                Filter yang kamu pilih terlalu ketat. Coba ubah atau reset filter.
                             @else
-                                Belum ada produk aktif yang tersedia dalam kategori ini.
+                                Belum ada produk aktif yang tersedia di kategori ini.
                             @endif
                         </p>
-                        <a href="{{ route('public.kategori.index') }}" class="inline-flex items-center gap-2 text-sm font-bold text-white bg-[#2563EB] hover:bg-[#1D4ED8] px-6 py-2.5 rounded-lg transition-colors shadow-soft hover:shadow-md">
-                            Lihat Semua Produk
+                        <a href="{{ route('public.kategori.index') }}" class="btn-primary inline-flex px-8 py-3 bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)]">
+                            LIHAT SEMUA PRODUK
                         </a>
                     </div>
                 @else
-                    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+                    <div class="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         @foreach($produk as $item)
                             <x-public.product-card :produk="$item" />
                         @endforeach
                     </div>
 
                     {{-- Pagination --}}
-                    <div class="mt-10">
+                    <div class="mt-16">
                         {{ $produk->links() }}
                     </div>
                 @endif

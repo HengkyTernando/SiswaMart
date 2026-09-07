@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,22 +7,22 @@
 /* ─── Design Tokens ────────────────────────────────────────────── */
 @layer base {
     :root {
-        --color-primary:       #2563EB;
-        --color-primary-dark:  #1D4ED8;
-        --color-primary-light: #EFF6FF;
-        --color-primary-border:#BFDBFE;
-        --color-bg:            #F8FAFF;
-        --color-surface:       #FFFFFF;
-        --color-text:          #172033;
+        --color-primary:       #FF7A00;
+        --color-primary-dark:  #E66A00;
+        --color-primary-light: #FFF8E8;
+        --color-primary-border:#FFD84D;
+        --color-bg:            #FFF8E8;
+        --color-surface:       #FFFCF5;
+        --color-text:          #241A14;
         --color-text-muted:    #64748B;
-        --color-border:        #E2E8F0;
-        --color-success:       #16A34A;
-        --color-warning:       #F59E0B;
+        --color-border:        #241A14;
+        --color-success:       #5B8C51;
+        --color-warning:       #FFD84D;
         --color-danger:        #DC2626;
     }
 
     html {
-        font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+        font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
         scroll-behavior: smooth;
     }
 
@@ -35,115 +35,118 @@
 }
 
 /* ─── Component Utilities ──────────────────────────────────────── */
+/* ─── Component Utilities ──────────────────────────────────────── */
 @layer components {
 
     /* Product card hover effect */
     .product-card {
-        border-radius: 16px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        border-radius: 24px;
+        background-color: var(--color-surface);
+        border: 2px solid var(--color-border);
+        box-shadow: 4px 4px 0px 0px var(--color-border);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden;
     }
     .product-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08), 0 4px 12px rgba(15, 23, 42, 0.06);
-        border-color: #BFDBFE;
+        transform: translate(-4px, -4px);
+        box-shadow: 8px 8px 0px 0px var(--color-border);
     }
 
     /* Category Card */
     .category-card {
-        border-radius: 16px;
-        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
-        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        border-radius: 32px;
+        border: 2px solid var(--color-border);
+        box-shadow: 4px 4px 0px 0px var(--color-border);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden;
     }
     .category-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04);
-        border-color: #93C5FD;
+        transform: translate(-4px, -4px);
+        box-shadow: 8px 8px 0px 0px var(--color-border);
     }
 
     /* Primary Button */
     .btn-primary {
         background-color: var(--color-primary);
-        color: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        color: var(--color-border);
+        font-weight: 800;
+        border: 2px solid var(--color-border);
+        border-radius: 9999px; /* pill shape */
+        box-shadow: 4px 4px 0px 0px var(--color-border);
         transition: all 0.2s ease;
     }
     .btn-primary:hover {
         background-color: var(--color-primary-dark);
-        transform: translateY(-1.5px);
-        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px 0px var(--color-border);
     }
 
     /* Search input */
     .search-input {
-        border-radius: 12px;
-        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+        border-radius: 9999px;
+        border: 2px solid var(--color-border);
+        box-shadow: 2px 2px 0px 0px var(--color-border);
         transition: all 0.2s ease;
     }
     .search-input:focus {
         outline: none;
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), 0 2px 6px rgba(15, 23, 42, 0.03);
+        box-shadow: 4px 4px 0px 0px var(--color-border);
+        transform: translate(-2px, -2px);
     }
 
     /* Category chip (filter bar) */
     .cat-chip {
-        background-color: #FFFFFF;
-        color: var(--color-text-muted);
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        border: 2px solid var(--color-border);
+        border-radius: 9999px;
+        box-shadow: 2px 2px 0px 0px var(--color-border);
+        font-weight: 700;
         transition: all 0.15s ease;
     }
     .cat-chip.active {
         background-color: var(--color-primary);
-        color: white;
-        border-color: var(--color-primary);
+        color: var(--color-border);
+        box-shadow: inset 2px 2px 0px 0px rgba(0,0,0,0.2);
+        transform: translate(2px, 2px);
     }
     .cat-chip:not(.active):hover {
-        background-color: var(--color-primary-light);
-        color: var(--color-primary);
-        border-color: var(--color-primary-border);
-    }
-
-    /* Search input ring on focus (legacy class, mapped to new search-input for safety) */
-    .search-ring {
-        border-radius: 12px;
-        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
-        transition: all 0.2s ease;
-    }
-    .search-ring:focus {
-        outline: none;
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        background-color: var(--color-primary-border);
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0px 0px var(--color-border);
     }
 
     /* WhatsApp CTA button */
     .wa-btn {
-        background-color: #22C55E;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+        background-color: var(--color-success);
+        color: var(--color-surface);
+        font-weight: 800;
+        border: 2px solid var(--color-border);
+        border-radius: 9999px;
+        box-shadow: 4px 4px 0px 0px var(--color-border);
         transition: all 0.2s ease;
     }
     .wa-btn:hover {
-        background-color: #16A34A;
-        transform: translateY(-1.5px);
-        box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
+        background-color: #4A7A41;
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px 0px var(--color-border);
     }
 
     /* Image placeholder */
     .img-placeholder {
-        background-color: #F1F5F9;
+        background-color: var(--color-surface);
+        border-bottom: 2px solid var(--color-border);
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        color: #94A3B8;
+        color: var(--color-border);
     }
 
     /* Sticky navbar backdrop */
     .public-nav {
-        background-color: rgba(255, 255, 255, 0.97);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        background-color: var(--color-bg);
+        border-bottom: 2px solid var(--color-border);
     }
 }
 

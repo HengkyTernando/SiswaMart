@@ -16,14 +16,24 @@ export default {
         'bg-yellow-100','text-yellow-800',
         'bg-blue-100',  'text-blue-700',
         'bg-blue-50',   'text-blue-600',
+        // Category dynamic colors
+        'bg-[#FFB084]', 'bg-[#A3D9C9]', 'bg-[#FFD84D]', 'bg-[#D4C4FB]',
     ],
 
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+                sans: ['"Plus Jakarta Sans"', ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                // New Brand Colors
+                cream: '#FFF8E8',
+                offwhite: '#FFFCF5',
+                darkbrown: '#241A14',
+                brandorange: '#FF7A00',
+                brandyellow: '#FFD84D',
+                brandgreen: '#5B8C51',
+                // Keep brand blue for secondary/admin compatibility if needed
                 brand: {
                     50:      '#EFF6FF',
                     100:     '#DBEAFE',
@@ -40,6 +50,11 @@ export default {
                     dark:    '#1D4ED8',
                 },
             },
+            boxShadow: {
+                'solid': '4px 4px 0px 0px rgba(36, 26, 20, 1)',
+                'solid-sm': '2px 2px 0px 0px rgba(36, 26, 20, 1)',
+                'solid-lg': '6px 6px 0px 0px rgba(36, 26, 20, 1)',
+            }
         },
     },
 

@@ -5,101 +5,101 @@
 
 @section('content')
 
-{{-- ─── Breadcrumb ──────────────────────────────────────────── --}}
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-0">
-    <nav class="flex items-center gap-1.5 text-sm text-[#64748B]" aria-label="Breadcrumb">
-        <a href="{{ route('public.home') }}" class="hover:text-[#2563EB] transition-colors">Beranda</a>
-        <span class="text-[#CBD5E1]">/</span>
-        <span class="text-[#172033] font-medium truncate max-w-[200px] sm:max-w-xs">Cara Pemesanan</span>
-    </nav>
-</div>
-
-{{-- ─── Cara Pemesanan ─────────────────────────────────────────────── --}}
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-    <div class="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
-        <h1 class="text-3xl lg:text-4xl font-bold text-[#172033] mb-4">Cara Pemesanan</h1>
-        <p class="text-[#64748B] text-base lg:text-lg">Temukan produk kreatif yang kamu inginkan dan hubungi penjual secara langsung melalui WhatsApp.</p>
+<main class="bg-[var(--color-bg)] min-h-screen">
+    {{-- ─── Breadcrumb ──────────────────────────────────────────── --}}
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-[60px] pt-8">
+        <nav class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] font-bold uppercase tracking-widest" aria-label="Breadcrumb">
+            <a href="{{ route('public.home') }}" class="hover:text-[var(--color-primary)] transition-colors">BERANDA</a>
+            <span class="text-[var(--color-border)]">/</span>
+            <span class="text-[var(--color-text)] truncate max-w-[200px] sm:max-w-xs">CARA PEMESANAN</span>
+        </nav>
     </div>
 
-    <div class="flex flex-col lg:flex-row gap-6 relative">
-        {{-- Decorative Line for Desktop --}}
-        <div class="hidden lg:block absolute top-[52px] left-10 right-10 h-px bg-[#E2E8F0] z-0"></div>
-
-        {{-- Step 1 --}}
-        <div class="flex-1 bg-white border border-[#E2E8F0] p-8 rounded-2xl relative z-10 text-center lg:text-left shadow-sm">
-            <div class="w-16 h-16 bg-[#EFF6FF] text-[#2563EB] rounded-2xl flex items-center justify-center text-3xl mb-6 mx-auto lg:mx-0 shadow-sm border border-[#BFDBFE]">
-                🔎
-            </div>
-            <div class="text-[#2563EB] text-sm font-bold tracking-widest mb-3">01</div>
-            <h3 class="text-xl font-bold text-[#172033] mb-3">Cari Produk</h3>
-            <p class="text-[#64748B] text-base leading-relaxed">
-                Gunakan fitur pencarian atau pilih dari berbagai kategori untuk menemukan produk karya siswa yang kamu inginkan.
+    {{-- ─── Cara Pemesanan Header ─────────────────────────────────────────────── --}}
+    <section class="max-w-[1400px] mx-auto px-6 lg:px-[60px] py-16 lg:py-24">
+        <div class="text-center max-w-4xl mx-auto mb-20 relative">
+            {{-- Decorative elements --}}
+            <div class="absolute -top-10 -left-10 w-24 h-24 bg-[#FFD84D] border-4 border-[var(--color-border)] rounded-full shadow-solid-sm z-0 hidden md:block transform -rotate-12"></div>
+            <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-[#A3D9C9] border-4 border-[var(--color-border)] rounded-full shadow-solid-sm z-0 hidden md:block transform rotate-12"></div>
+            
+            <h1 class="text-6xl lg:text-7xl font-black text-[var(--color-text)] mb-6 uppercase tracking-tighter relative z-10">Gimana Cara Pesannya?</h1>
+            <p class="text-[var(--color-text-muted)] text-xl lg:text-2xl font-bold relative z-10 bg-white inline-block px-8 py-4 rounded-full border-4 border-[var(--color-border)] shadow-[4px_4px_0px_0px_var(--color-border)] transform -rotate-1">
+                Gampang banget! Ikutin 4 langkah mudah ini 👇
             </p>
         </div>
 
-        {{-- Decorative Vertical Line for Mobile --}}
-        <div class="lg:hidden w-px h-6 bg-[#E2E8F0] mx-auto -my-2 relative z-0"></div>
-
-        {{-- Step 2 --}}
-        <div class="flex-1 bg-white border border-[#E2E8F0] p-8 rounded-2xl relative z-10 text-center lg:text-left shadow-sm">
-            <div class="w-16 h-16 bg-[#EFF6FF] text-[#2563EB] rounded-2xl flex items-center justify-center text-3xl mb-6 mx-auto lg:mx-0 shadow-sm border border-[#BFDBFE]">
-                👀
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 relative">
+            
+            {{-- Step 1 --}}
+            <div class="bg-[#FFF8E8] border-4 border-[var(--color-border)] p-8 rounded-[40px] relative z-10 text-center shadow-solid-md transform hover:-translate-y-2 transition-transform duration-300">
+                <div class="absolute -top-6 -right-6 w-14 h-14 bg-white border-4 border-[var(--color-border)] rounded-full flex items-center justify-center font-black text-2xl text-[var(--color-text)] shadow-solid-sm transform rotate-12">1</div>
+                <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center text-5xl mb-8 mx-auto shadow-[4px_4px_0px_0px_var(--color-border)] border-4 border-[var(--color-border)] transform -rotate-6">
+                    🔎
+                </div>
+                <h3 class="text-2xl font-black text-[var(--color-text)] mb-4 uppercase tracking-tighter">Cari Produk</h3>
+                <p class="text-[var(--color-text-muted)] text-base font-bold leading-relaxed">
+                    Scroll dan temukan makanan/minuman yang lagi kamu pengenin dari teman-teman sekolahmu.
+                </p>
             </div>
-            <div class="text-[#2563EB] text-sm font-bold tracking-widest mb-3">02</div>
-            <h3 class="text-xl font-bold text-[#172033] mb-3">Lihat Detail</h3>
-            <p class="text-[#64748B] text-base leading-relaxed">
-                Periksa informasi produk, harga, status ketersediaan (Ready/PO), ulasan, dan profil toko penjual dengan seksama.
-            </p>
-        </div>
 
-        {{-- Decorative Vertical Line for Mobile --}}
-        <div class="lg:hidden w-px h-6 bg-[#E2E8F0] mx-auto -my-2 relative z-0"></div>
-
-        {{-- Step 3 --}}
-        <div class="flex-1 bg-white border border-[#E2E8F0] p-8 rounded-2xl relative z-10 text-center lg:text-left shadow-sm">
-            <div class="w-16 h-16 bg-[#EFF6FF] text-[#2563EB] rounded-2xl flex items-center justify-center text-3xl mb-6 mx-auto lg:mx-0 shadow-sm border border-[#BFDBFE]">
-                💬
+            {{-- Step 2 --}}
+            <div class="bg-[#D4C4FB] border-4 border-[var(--color-border)] p-8 rounded-[40px] relative z-10 text-center shadow-solid-md transform hover:-translate-y-2 transition-transform duration-300 lg:translate-y-8">
+                <div class="absolute -top-6 -right-6 w-14 h-14 bg-white border-4 border-[var(--color-border)] rounded-full flex items-center justify-center font-black text-2xl text-[var(--color-text)] shadow-solid-sm transform -rotate-12">2</div>
+                <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center text-5xl mb-8 mx-auto shadow-[4px_4px_0px_0px_var(--color-border)] border-4 border-[var(--color-border)] transform rotate-6">
+                    👀
+                </div>
+                <h3 class="text-2xl font-black text-[var(--color-text)] mb-4 uppercase tracking-tighter">Cek Detailnya</h3>
+                <p class="text-[var(--color-text-muted)] text-base font-bold leading-relaxed">
+                    Lihat deskripsi, harga, dan pastikan stoknya masih ada (Ready atau harus Pre-Order).
+                </p>
             </div>
-            <div class="text-[#2563EB] text-sm font-bold tracking-widest mb-3">03</div>
-            <h3 class="text-xl font-bold text-[#172033] mb-3">Hubungi Penjual</h3>
-            <p class="text-[#64748B] text-base leading-relaxed">
-                Klik tombol "Hubungi Penjual via WhatsApp" pada halaman detail produk untuk terhubung langsung dengan siswa pembuatnya.
-            </p>
-        </div>
 
-        {{-- Decorative Vertical Line for Mobile --}}
-        <div class="lg:hidden w-px h-6 bg-[#E2E8F0] mx-auto -my-2 relative z-0"></div>
-
-        {{-- Step 4 --}}
-        <div class="flex-1 bg-white border border-[#E2E8F0] p-8 rounded-2xl relative z-10 text-center lg:text-left shadow-sm">
-            <div class="w-16 h-16 bg-[#EFF6FF] text-[#2563EB] rounded-2xl flex items-center justify-center text-3xl mb-6 mx-auto lg:mx-0 shadow-sm border border-[#BFDBFE]">
-                🤝
+            {{-- Step 3 --}}
+            <div class="bg-[#FFB084] border-4 border-[var(--color-border)] p-8 rounded-[40px] relative z-10 text-center shadow-solid-md transform hover:-translate-y-2 transition-transform duration-300">
+                <div class="absolute -top-6 -right-6 w-14 h-14 bg-white border-4 border-[var(--color-border)] rounded-full flex items-center justify-center font-black text-2xl text-[var(--color-text)] shadow-solid-sm transform rotate-12">3</div>
+                <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center text-5xl mb-8 mx-auto shadow-[4px_4px_0px_0px_var(--color-border)] border-4 border-[var(--color-border)] transform -rotate-6">
+                    💬
+                </div>
+                <h3 class="text-2xl font-black text-[var(--color-text)] mb-4 uppercase tracking-tighter">Chat Penjual</h3>
+                <p class="text-white text-base font-bold leading-relaxed drop-shadow-md">
+                    Klik tombol WhatsApp untuk ngobrol langsung sama penjualnya. Nggak perlu malu!
+                </p>
             </div>
-            <div class="text-[#2563EB] text-sm font-bold tracking-widest mb-3">04</div>
-            <h3 class="text-xl font-bold text-[#172033] mb-3">Pesan Langsung</h3>
-            <p class="text-[#64748B] text-base leading-relaxed">
-                Diskusikan ketersediaan, waktu pengambilan, dan detail pesanan. Transaksi diselesaikan langsung dengan penjual.
-            </p>
-        </div>
-    </div>
-</section>
 
-{{-- ─── CTA Bottom ──────────────────────────────────────────────────── --}}
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mb-10">
-    <div class="bg-[#EFF6FF] border border-[#BFDBFE] rounded-2xl px-8 py-10 text-center shadow-sm">
-        <h2 class="text-2xl font-bold text-[#172033] mb-3">
-            Siap untuk mulai mencari?
-        </h2>
-        <p class="text-[#64748B] text-sm sm:text-base mb-6 max-w-md mx-auto">
-            Dukung kreativitas teman-teman sekolahmu dengan membeli produk karya mereka.
-        </p>
-        <a href="{{ route('public.produk.index') }}" class="btn-primary inline-flex items-center gap-2 px-8 py-3 rounded-xl shadow-soft">
-            Jelajahi Produk Sekarang
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-        </a>
-    </div>
-</section>
+            {{-- Step 4 --}}
+            <div class="bg-[#A3D9C9] border-4 border-[var(--color-border)] p-8 rounded-[40px] relative z-10 text-center shadow-solid-md transform hover:-translate-y-2 transition-transform duration-300 lg:translate-y-8">
+                <div class="absolute -top-6 -right-6 w-14 h-14 bg-white border-4 border-[var(--color-border)] rounded-full flex items-center justify-center font-black text-2xl text-[var(--color-text)] shadow-solid-sm transform -rotate-12">4</div>
+                <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center text-5xl mb-8 mx-auto shadow-[4px_4px_0px_0px_var(--color-border)] border-4 border-[var(--color-border)] transform rotate-6">
+                    🤝
+                </div>
+                <h3 class="text-2xl font-black text-[var(--color-text)] mb-4 uppercase tracking-tighter">Deal & Bayar!</h3>
+                <p class="text-[var(--color-text-muted)] text-base font-bold leading-relaxed">
+                    Janjian ketemuan di sekolah, ambil makanannya, dan bayar cash langsung ke penjual. Done!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {{-- ─── CTA Bottom ──────────────────────────────────────────────────── --}}
+    <section class="max-w-[1000px] mx-auto px-6 lg:px-[60px] pb-24">
+        <div class="bg-[var(--color-primary)] border-4 border-[var(--color-border)] rounded-[40px] px-8 py-16 text-center shadow-[8px_8px_0px_0px_var(--color-border)] transform -rotate-1 relative overflow-hidden">
+            {{-- Background blobs --}}
+            <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full mix-blend-overlay"></div>
+                <div class="absolute bottom-10 right-10 w-48 h-48 bg-white rounded-full mix-blend-overlay"></div>
+            </div>
+
+            <h2 class="text-4xl lg:text-5xl font-black text-white mb-6 uppercase tracking-tighter relative z-10">
+                Udah Paham Kan?
+            </h2>
+            <p class="text-white/90 text-lg sm:text-xl font-bold mb-10 max-w-xl mx-auto relative z-10">
+                Yuk, langsung cari makanan atau minuman yang lagi kamu pengenin sekarang juga!
+            </p>
+            <a href="{{ route('public.produk.index') }}" class="inline-flex items-center gap-3 px-10 py-5 bg-white text-[var(--color-text)] border-4 border-[var(--color-border)] rounded-2xl shadow-[4px_4px_0px_0px_var(--color-border)] font-black text-xl hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--color-border)] transition-all uppercase tracking-wider relative z-10 transform rotate-1">
+                JELAJAHI KATALOG 🛒
+            </a>
+        </div>
+    </section>
+</main>
 
 @endsection
